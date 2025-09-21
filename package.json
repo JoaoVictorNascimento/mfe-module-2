@@ -1,6 +1,6 @@
 {
   "name": "mfe-module-2",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Module 2 for Microfrontend Architecture",
   "main": "dist/bundles/main.js",
   "types": "src/export.tsx",
@@ -16,8 +16,10 @@
   },
   "dependencies": {
     "@modern-js/runtime": "^2.68.0",
+    "@types/react-router-dom": "^5.3.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.9.1"
   },
   "devDependencies": {
     "@modern-js/app-tools": "^2.68.0",
