@@ -1,15 +1,25 @@
 import React from 'react';
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import Page1 from '../pages/Page1';
 import Page2 from '../pages/Page2';
 
 const Module2Router: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate('/');
+  };
 
   return (
     <div className="space-y-4">
-      {/* Navegação interna do módulo */}
-      <div className="flex gap-4 justify-center">
+      <div className="flex gap-4 justify-center items-center">
+        <button
+          onClick={handleGoBack}
+          className="px-4 py-2 rounded-lg font-medium transition-colors bg-red-100 text-red-700 hover:bg-red-200 flex items-center gap-2"
+        >
+          ← Voltar
+        </button>
         <Link 
           to="/module2/page1" 
           className={`px-4 py-2 rounded-lg font-medium transition-colors ${
