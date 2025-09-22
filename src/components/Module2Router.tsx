@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, Link, useLocation, useNavigate } from '@modern-js/runtime/router';
 import Page1 from '../pages/Page1';
 import Page2 from '../pages/Page2';
 
