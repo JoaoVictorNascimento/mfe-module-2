@@ -1,9 +1,10 @@
-import Module2Router from './components/Module2Router';
+import { Outlet } from '@modern-js/runtime/router';
+import './styles.css';
 
 const App = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <Module2Router />  
+      <Outlet />
     </div>
   );
 };

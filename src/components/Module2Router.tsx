@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Link, useLocation, useNavigate } from '@modern-js/runtime/router';
-import Page1 from '../pages/Page1';
-import Page2 from '../pages/Page2';
+import Page1 from '../routes/page1';
+import Page2 from '../routes/page2';
 
 const Module2Router: React.FC = () => {
   const location = useLocation();

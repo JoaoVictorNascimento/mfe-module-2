@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLoader } from '@modern-js/runtime';
-import { loader } from './Page2.data';
+import { loader } from './page2.data';
 import '../styles.css';
 
 interface CartItem {

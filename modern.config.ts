@@ -7,7 +7,7 @@ export default defineConfig({
     }),
   ],
   runtime: {
-    router: false,
+    router: true,
   },
   source: {
     entries: {
@@ -16,7 +16,7 @@ export default defineConfig({
   },
   server: {
     ssr: true,
-    port: 3001,
+    port: 3002,
   },
   deploy: {
     microFrontend: {
