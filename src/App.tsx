@@ -1,9 +1,9 @@
-import Module1 from './components/Module2';
+import Page1 from './pages/Page1';
 
 const App = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <Module1 />
+      <Page1 />  
     </div>
   );
 };

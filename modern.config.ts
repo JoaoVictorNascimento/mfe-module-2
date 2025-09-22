@@ -8,7 +8,6 @@ export default defineConfig({
   ],
   runtime: {
     router: false,
-    state: true,
   },
   source: {
     entries: {

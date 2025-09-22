@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoader } from '@modern-js/runtime';
 import { loader } from './Page1.data';
+import '../styles.css';
 
 interface User {
   id: number;
