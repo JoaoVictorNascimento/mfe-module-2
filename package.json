@@ -1,6 +1,6 @@
 {
   "name": "mfe-module-2",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Module 2 for Microfrontend Architecture",
   "main": "dist/bundles/main.js",
   "types": "src/export.tsx",
