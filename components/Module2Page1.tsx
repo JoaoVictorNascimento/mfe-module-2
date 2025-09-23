@@ -1,4 +1,5 @@
-import React from 'react'
+'use client';
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 interface Product {
@@ -14,31 +15,74 @@ interface Product {
   };
 }
 
-// Server Component que faz SSR internamente
-async function getProducts(): Promise<Product[]> {
-  try {
-    console.log('🔄 [SSR] Executando getProducts no servidor');
-    const response = await fetch('https://fakestoreapi.com/products?limit=6', {
-      cache: 'no-store' // Sempre buscar dados frescos
-    });
-    
-    if (!response.ok) {
-      throw new Error('Falha ao carregar produtos');
-    }
-    
-    const products = await response.json();
-    console.log(`✅ [SSR] Produtos carregados com sucesso: ${products.length} itens`);
-    return products;
-  } catch (error) {
-    console.error('❌ [SSR] Erro ao carregar produtos:', error);
-    return [];
-  }
-}
+export default function Module2Page1() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-export default async function Module2Page1() {
-  const products = await getProducts();
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        console.log('🔄 [CSR] Executando fetchProducts no cliente');
+        const response = await fetch('https://fakestoreapi.com/products?limit=6');
+        
+        if (!response.ok) {
+          throw new Error('Falha ao carregar produtos');
+        }
+        
+        const data = await response.json();
+        console.log(`✅ [CSR] Produtos carregados com sucesso: ${data.length} itens`);
+        setProducts(data);
+      } catch (error) {
+        console.error('❌ [CSR] Erro ao carregar produtos:', error);
+        setError(error instanceof Error ? error.message : 'Erro desconhecido');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
   
-  if (products.length === 0) {
+  if (loading) {
+    return (
+      <div className="bg-white rounded-xl shadow-lg p-6">
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">🛍️ Módulo 2 - Sistema de E-commerce</h2>
+        
+        <div className="space-y-4">
+          <div className="flex gap-4 justify-center items-center">
+            <Link 
+              href="/module2" 
+              className="px-4 py-2 rounded-lg font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200"
+            >
+              Home
+            </Link>
+            <Link 
+              href="/module2/page1" 
+              className="px-4 py-2 rounded-lg font-medium transition-colors bg-red-600 text-white"
+            >
+              Página 1
+            </Link>
+            <Link 
+              href="/module2/page2" 
+              className="px-4 py-2 rounded-lg font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200"
+            >
+              Página 2
+            </Link>
+          </div>
+
+          <div className="flex items-center justify-center p-8">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+              <p className="text-gray-600">Carregando produtos...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
     return (
       <div className="bg-white rounded-xl shadow-lg p-6">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">🛍️ Módulo 2 - Sistema de E-commerce</h2>
@@ -66,7 +110,7 @@ export default async function Module2Page1() {
           </div>
 
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-            <strong>❌ Erro:</strong> Falha ao carregar produtos
+            <strong>❌ Erro:</strong> {error}
           </div>
         </div>
       </div>
